@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuestras Mascotas</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; padding: 20px; }
+        .header { text-align: center; margin-bottom: 30px; }
+        .grid-mascotas { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+        .tarjeta { 
+            background: white; border-radius: 8px; padding: 20px; 
+            width: 300px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+        }
+        .nombre { color: #2c3e50; font-size: 1.5em; margin-bottom: 5px; }
+        .especie { color: #16a085; font-weight: bold; margin-bottom: 15px; }
+        .detalle { color: #7f8c8d; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Centro de Adopción de Mascotas</h1>
+        <p>Conoce a nuestros adorables amigos que buscan o tienen un hogar.</p>
+    </div>
+
+    <div class="grid-mascotas">
+        <!-- Iniciamos un ciclo FOR de Django para recorrer los datos -->
+        {% for mascota in mascotas %}
+            <div class="tarjeta">
+                <div class="nombre">{{ mascota.nombre }}</div>
+                <div class="especie">{{ mascota.especie.nombre }}</div>
+                <div class="detalle">
+                    <p><strong>Edad:</strong> {{ mascota.edad }} años</p>
+                    <p><strong>Propietario:</strong> {{ mascota.propietario.nombre_completo }}</p>
+                    <p><strong>Llegó el:</strong> {{ mascota.fecha_registro|date:"d M Y" }}</p>
+                </div>
+            </div>
+        {% empty %}
+            <!-- Esto se muestra si no hay mascotas en la base de datos -->
+            <p>Aún no hay mascotas registradas. ¡Ve al panel de administración a agregar una!</p>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
