@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Variables Ambientales</title>
+</head>
+<body>
+
+<h1>Variables Ambientales</h1>
+
+<table border="1">
+    <tr>
+        <th>Salón</th>
+        <th>Temperatura</th>
+        <th>Humedad</th>
+        <th>Iluminación</th>
+        <th>Fecha</th>
+    </tr>
+
+    {% for variable in variables %}
+    <tr>
+        <td>{{ variable.salon.nombre }}</td>
+        <td>{{ variable.temperatura }} °C</td>
+        <td>{{ variable.humedad }} %</td>
+        <td>{{ variable.iluminacion }} lx</td>
+        <td>{{ variable.fecha_registro }}
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+</body>
+</html>
